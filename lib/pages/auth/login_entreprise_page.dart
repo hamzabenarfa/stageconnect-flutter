@@ -5,7 +5,6 @@ import 'package:projetflutterdev/components/loginbtn.dart';
 import 'package:projetflutterdev/models/auth/request/login_request_entreprise_model.dart';
 import 'package:projetflutterdev/pages/auth/login_page.dart';
 import 'package:projetflutterdev/pages/auth/signup_entreprise.dart';
-import 'package:projetflutterdev/pages/offer_page.dart';
 
 import '../../service/api_service.dart';
 import '../entreprise_page.dart';

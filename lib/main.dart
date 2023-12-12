@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:projetflutterdev/pages/auth/login_entreprise_page.dart';
 import 'package:projetflutterdev/pages/entreprise_page.dart';
+import 'package:projetflutterdev/pages/offer/add_edit_offer.dart';
+import 'package:projetflutterdev/pages/offer/offer_list.dart';
 import 'pages/auth/login_page.dart';
-import 'pages/offer_page.dart'; // Import UserPage
 
 void main() {
   runApp(const MyApp());
@@ -18,10 +19,11 @@ class MyApp extends StatelessWidget {
       initialRoute: '/', // Set the initial route
       routes: {
 
-        '/': (context) => LoginPage(),
+        '/': (context) => OfferList(),
         '/login_entreprise': (context) => LoginEntreprisePage(),
-        '/user': (context) => OfferPage(),
         '/entreprise': (context) => EntreprisePage(),
+        '/addoffer': (context) => AddEditOfferPage(),
+        '/editoffer': (context) => AddEditOfferPage(),
       },
     );
   }

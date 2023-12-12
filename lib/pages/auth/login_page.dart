@@ -4,7 +4,7 @@ import 'package:projetflutterdev/components/input.dart';
 import 'package:projetflutterdev/components/loginbtn.dart';
 import 'package:projetflutterdev/pages/auth/login_entreprise_page.dart';
 import 'package:projetflutterdev/pages/auth/signup_page.dart';
-import 'package:projetflutterdev/pages/offer_page.dart';
+import 'package:projetflutterdev/pages/offer/offer_item.dart';
 
 import '../../models/auth/request/login_request_user_model.dart';
 import '../../service/api_service.dart';
@@ -29,7 +29,7 @@ class LoginPage extends StatelessWidget {
         // Navigate to the OfferPage upon successful login
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => OfferPage()),
+          MaterialPageRoute(builder: (context) => OfferItem()),
         );
       } else {
         // Handle login failure
@@ -62,7 +62,7 @@ class LoginPage extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            Image.asset('lib/images/login.png', height: 250, width: 500),
+            // Image.asset('lib/images/login.png', height: 250, width: 500),
             SizedBox(height: 20),
             Text(
               'Welcome to Stage Connect',
@@ -72,7 +72,7 @@ class LoginPage extends StatelessWidget {
                 color: Colors.grey[700],
               ),
             ),
-            SizedBox(height: 40),
+            SizedBox(height: 20),
             Input(
               hintText: 'Email',
               controller: emailController,

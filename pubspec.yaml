@@ -37,6 +37,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   http: any
   fluttertoast: ^8.0.7
+  snippet_coder_utils: ^1.0.9
+
 
 
 
