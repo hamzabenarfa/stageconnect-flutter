@@ -4,7 +4,7 @@ import 'package:projetflutterdev/components/input.dart';
 import 'package:projetflutterdev/components/loginbtn.dart';
 import 'package:projetflutterdev/pages/auth/login_entreprise_page.dart';
 import 'package:projetflutterdev/pages/auth/signup_page.dart';
-import 'package:projetflutterdev/pages/offer/offer_item.dart';
+import 'package:projetflutterdev/pages/user_page.dart';
 
 import '../../models/auth/request/login_request_user_model.dart';
 import '../../service/api_service.dart';
@@ -29,7 +29,7 @@ class LoginPage extends StatelessWidget {
         // Navigate to the OfferPage upon successful login
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => OfferItem()),
+          MaterialPageRoute(builder: (context) => UserPage()),
         );
       } else {
         // Handle login failure

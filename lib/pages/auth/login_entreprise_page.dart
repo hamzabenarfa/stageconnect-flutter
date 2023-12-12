@@ -8,6 +8,7 @@ import 'package:projetflutterdev/pages/auth/signup_entreprise.dart';
 
 import '../../service/api_service.dart';
 import '../entreprise_page.dart';
+import '../offer/offer_list.dart';
 
 class LoginEntreprisePage extends StatelessWidget {
   LoginEntreprisePage({Key? key}) : super(key: key);
@@ -30,7 +31,7 @@ class LoginEntreprisePage extends StatelessWidget {
         // Navigate to the OfferPage upon successful login
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => EntreprisePage()),
+          MaterialPageRoute(builder: (context) => OfferList()),
         );
       } else {
         // Handle login failure

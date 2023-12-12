@@ -4,6 +4,7 @@ import 'package:projetflutterdev/pages/entreprise_page.dart';
 import 'package:projetflutterdev/pages/offer/add_offer.dart';
 import 'package:projetflutterdev/pages/offer/edit_offer.dart';
 import 'package:projetflutterdev/pages/offer/offer_list.dart';
+import 'package:projetflutterdev/pages/user_page.dart';
 import 'pages/auth/login_page.dart';
 
 void main() {
@@ -20,11 +21,13 @@ class MyApp extends StatelessWidget {
       initialRoute: '/', // Set the initial route
       routes: {
 
-        '/': (context) => OfferList(),
+        '/': (context) => LoginPage(),
         '/login_entreprise': (context) => LoginEntreprisePage(),
         '/entreprise': (context) => EntreprisePage(),
         '/addoffer': (context) => AddOfferPage(),
         '/editoffer': (context) => EditOfferPage(),
+        '/offerlist': (context) => OfferList(),
+        '/userpage': (context) => UserPage(),
       },
     );
   }
