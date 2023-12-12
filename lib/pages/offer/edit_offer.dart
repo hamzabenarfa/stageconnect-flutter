@@ -10,49 +10,56 @@ import '../../components/loginbtn.dart';
 import '../../config.dart';
 import '../../service/offer_service.dart';
 
-class AddEditOfferPage extends StatefulWidget {
-  const AddEditOfferPage({Key? key}) : super(key: key);
+class EditOfferPage extends StatefulWidget {
+  const EditOfferPage({Key? key}) : super(key: key);
 
   @override
   _AddEditOfferPageState createState() => _AddEditOfferPageState();
 }
 
-class _AddEditOfferPageState extends State<AddEditOfferPage> {
+class _AddEditOfferPageState extends State<EditOfferPage> {
+  late String offerId;
+  late offerModel offer;
 
   final titleController = TextEditingController();
   final companyController = TextEditingController();
   final placeController = TextEditingController();
-  final durationController = TextEditingController();
 
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    Map<String, dynamic>? arguments = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>?;
+    if (arguments != null) {
+      offerId = arguments['id'];
+      offer = arguments['model'];
+      titleController.text = offer.title!;
+      companyController.text = offer.company!;
+      placeController.text = offer.place!;
+    }
+  }
 
   void saveOffer(
       String title,
       String company,
       String place,
-      String duration,
-
       BuildContext context,
       ) async {
     try {
-      int parsedDuration = int.tryParse(duration) ?? 0;
+      var offerRequest = offerModel(id: offerId, title: title, company: company, place: place);
+      List<offerModel>? offerSuccess = await OfferService.updateOffer(offerId, offerRequest);
 
-      var offerRequest = offerModel( title: title, company: company, place: place, duration: parsedDuration);
-      List<offerModel> offerSuccess = await OfferService.SaveOffer(offerRequest);
+      if (offerSuccess != null) {
+        showToast('Register successful', context);
 
-      if (offerSuccess.isNotEmpty ) {
-
-        showToast('register successful', context);
-
-        // Navigate to the OfferPage upon successful login
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => OfferList()),
         );
-      }
-      else {
+      } else {
         // Handle login failure
-        print('register failed');
-        showToast('register failed. Please check your credentials.', context);
+        print('Register failed');
+        showToast('Register failed. Please check your credentials.', context);
       }
     } catch (e) {
       print(e.toString());
@@ -76,60 +83,47 @@ class _AddEditOfferPageState extends State<AddEditOfferPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Add | Edit Offer'),
+        title: const Text('Edit Offer'),
         elevation: 0,
       ),
       backgroundColor: Colors.grey[300],
       body: SafeArea(
         child: Column(
           children: [
-
             SizedBox(height: 50),
             Input(
-              hintText: 'title',
+              hintText: 'Title',
               controller: titleController,
               obscureText: false,
             ),
             SizedBox(height: 15),
             Input(
-              hintText: 'company',
+              hintText: 'Company',
               controller: companyController,
               obscureText: false,
             ),
             SizedBox(height: 15),
-
             Input(
-              hintText: 'place',
+              hintText: 'Place',
               controller: placeController,
               obscureText: false,
             ),
             SizedBox(height: 15),
-            Input(
-              hintText: 'duration',
-              controller: durationController,
-              obscureText: false,
-            ),
-            SizedBox(height: 25),
             LoginBtn(
-              text: 'Save',
+              text: 'Edit ',
               bgColor: Colors.black,
               onTap: () {
                 saveOffer(
                   titleController.text.toString(),
                   companyController.text.toString(),
                   placeController.text.toString(),
-                  durationController.text.toString(),
-
                   context,
                 );
               },
             ),
-
           ],
         ),
       ),
-
     );
   }
-
 }

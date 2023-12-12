@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../models/offer/offer_model.dart';
+import '../../service/offer_service.dart';
 
 class OfferItem extends StatelessWidget {
   const OfferItem({Key? key, this.offer, this.onDelete}) : super(key: key);
@@ -31,30 +32,7 @@ class OfferItem extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Container(
-              //   width: 120,
-              //   height: 120,
-              //   alignment: Alignment.center,
-              //   decoration: BoxDecoration(
-              //     color: Colors.blue, // Add your color here
-              //     borderRadius: BorderRadius.circular(20),
-              //     boxShadow: const [
-              //       BoxShadow(
-              //         color: Colors.black12,
-              //         blurRadius: 5,
-              //         offset: Offset(0, 5),
-              //       ),
-              //     ],
-              //   ),
-              //   child: Text(
-              //     "Title", // Replace with your actual title
-              //     style: const TextStyle(
-              //       color: Colors.white,
-              //       fontWeight: FontWeight.bold,
-              //       fontSize: 18,
-              //     ),
-              //   ),
-              // ),
+
               const SizedBox(width: 16),
               Expanded(
                 child: Column(
@@ -79,10 +57,7 @@ class OfferItem extends StatelessWidget {
                       style: const TextStyle(color: Colors.black),
                     ),
                     const SizedBox(height: 10),
-                    Text(
-                      "Duration: ${offer!.duration}", // Add the actual duration value
-                      style: const TextStyle(color: Colors.black),
-                    ),
+
                     const SizedBox(height: 10),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
@@ -91,9 +66,12 @@ class OfferItem extends StatelessWidget {
                           child: const Icon(Icons.edit),
                           onTap: () {
                             Navigator.of(context).pushNamed(
-                              '/edit-product',
+                              '/editoffer',
                               arguments: {
                                 'model': offer,
+                                'id': offer!.id,
+
+
                               },
                             );
                           },
@@ -104,8 +82,16 @@ class OfferItem extends StatelessWidget {
                             Icons.delete,
                             color: Colors.red,
                           ),
-                          onTap: () {
-                            onDelete!(offer);
+                          onTap: () async {
+                            try {
+                              await OfferService.deleteOffer(offer!.id!);
+                              onDelete!(offer);
+                              Navigator.of(context).pop();
+                              Navigator.of(context).pushNamed('/offer');
+                            } catch (e) {
+                              // Handle error
+                              print('Error deleting offer: $e');
+                            }
                           },
                         ),
                       ],

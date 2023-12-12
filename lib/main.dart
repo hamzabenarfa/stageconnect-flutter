@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:projetflutterdev/pages/auth/login_entreprise_page.dart';
 import 'package:projetflutterdev/pages/entreprise_page.dart';
-import 'package:projetflutterdev/pages/offer/add_edit_offer.dart';
+import 'package:projetflutterdev/pages/offer/add_offer.dart';
+import 'package:projetflutterdev/pages/offer/edit_offer.dart';
 import 'package:projetflutterdev/pages/offer/offer_list.dart';
 import 'pages/auth/login_page.dart';
 
@@ -22,8 +23,8 @@ class MyApp extends StatelessWidget {
         '/': (context) => OfferList(),
         '/login_entreprise': (context) => LoginEntreprisePage(),
         '/entreprise': (context) => EntreprisePage(),
-        '/addoffer': (context) => AddEditOfferPage(),
-        '/editoffer': (context) => AddEditOfferPage(),
+        '/addoffer': (context) => AddOfferPage(),
+        '/editoffer': (context) => EditOfferPage(),
       },
     );
   }
