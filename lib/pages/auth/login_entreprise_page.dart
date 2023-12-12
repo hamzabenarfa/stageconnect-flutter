@@ -7,7 +7,6 @@ import 'package:projetflutterdev/pages/auth/login_page.dart';
 import 'package:projetflutterdev/pages/auth/signup_entreprise.dart';
 
 import '../../service/api_service.dart';
-import '../entreprise_page.dart';
 import '../offer/offer_list.dart';
 
 class LoginEntreprisePage extends StatelessWidget {

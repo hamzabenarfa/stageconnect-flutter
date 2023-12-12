@@ -144,22 +144,8 @@ class _UserPageState extends State<UserPage> {
                   ),
                 ),
               ),
-              ListTile(
-                leading: Icon(Icons.person),
-                title: Text('Profile'),
-                onTap: () {
-                  // Handle Profile option
-                  Navigator.pop(context); // Close the drawer
-                },
-              ),
-              ListTile(
-                leading: Icon(Icons.settings),
-                title: Text('Settings'),
-                onTap: () {
-                  // Handle Settings option
-                  Navigator.pop(context); // Close the drawer
-                },
-              ),
+
+
               ListTile(
                 leading: Icon(Icons.exit_to_app),
                 title: Text('Logout'),
@@ -172,7 +158,7 @@ class _UserPageState extends State<UserPage> {
           ),
         ),
       ),
-    
+
     );
   }
 }

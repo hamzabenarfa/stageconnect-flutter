@@ -50,7 +50,7 @@ class _AddEditOfferPageState extends State<EditOfferPage> {
       List<offerModel>? offerSuccess = await OfferService.updateOffer(offerId, offerRequest);
 
       if (offerSuccess != null) {
-        showToast('Register successful', context);
+        showToast('editing is successful', context);
 
         Navigator.pushReplacement(
           context,
@@ -58,12 +58,12 @@ class _AddEditOfferPageState extends State<EditOfferPage> {
         );
       } else {
         // Handle login failure
-        print('Register failed');
-        showToast('Register failed. Please check your credentials.', context);
+        print('editing failed');
+        showToast('editing failed. Please check your credentials.', context);
       }
     } catch (e) {
       print(e.toString());
-      showToast('Registration failed', context);
+      showToast('editing failed', context);
     }
   }
 

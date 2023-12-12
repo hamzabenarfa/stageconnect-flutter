@@ -13,6 +13,7 @@ class OfferList extends StatefulWidget {
 
 class _OfferListState extends State<OfferList> {
   List<offerModel> offer = [];
+  bool isSidebarOpen = false;
 
   @override
   void initState() {
@@ -44,21 +45,6 @@ class _OfferListState extends State<OfferList> {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              primary: Colors.blue,
-              onPrimary: Colors.white,
-              shadowColor: Colors.red,
-              elevation: 5,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(32.0),
-              ),
-            ),
-            onPressed: () {
-              Navigator.pushNamed(context, '/addoffer');
-            },
-            child: const Text('Add Offer'),
-          ),
           ListView.builder(
             shrinkWrap: true,
             itemCount: offer?.length ?? 0,
@@ -72,6 +58,19 @@ class _OfferListState extends State<OfferList> {
                 },
               );
             },
+          ),
+          Align(
+            alignment: Alignment.bottomRight,
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: FloatingActionButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/addoffer');
+                },
+                child: Icon(Icons.add),
+                backgroundColor: Colors.green,
+              ),
+            ),
           ),
         ],
       ),
@@ -87,6 +86,45 @@ class _OfferListState extends State<OfferList> {
       ),
       backgroundColor: Colors.grey[300],
       body: offerList(offer),
+      endDrawer: AnimatedContainer(
+        duration: Duration(milliseconds: 300),
+        transform: Matrix4.translationValues(
+          isSidebarOpen ? -MediaQuery.of(context).size.width * 0.6 : 0,
+          0,
+          0,
+        ),
+        child: Drawer(
+          child: ListView(
+            children: [
+              const DrawerHeader(
+                decoration: BoxDecoration(
+                  color: Colors.blue,
+                ),
+                child: Center(
+                  child: Text(
+                    'Offer Page',
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ),
+
+              ListTile(
+                leading: Icon(Icons.exit_to_app),
+                title: Text('Logout'),
+                onTap: () {
+                  Navigator.pushReplacementNamed(context, '/');
+
+                },
+              ),
+            ],
+          ),
+        ),
+      ),
+
     );
   }
 }
+

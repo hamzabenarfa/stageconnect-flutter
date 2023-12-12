@@ -38,7 +38,7 @@ class _AddEditOfferPageState extends State<AddOfferPage> {
 
       if (offerSuccess == null ) {
 
-        showToast('register successful', context);
+        showToast('add successful', context);
 
         Navigator.pushReplacement(
           context,
